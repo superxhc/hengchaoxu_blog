@@ -6,9 +6,9 @@
       </a>
       <div class="site-identity-text">
         {{- if .IsHome }}
-        <h1 class="site-title-heading"><a class="site-title" href="{{ "" | absLangURL }}" accesskey="h">{{ site.Title }}</a></h1>
+        <h1 class="site-title-heading"><a class="site-title notranslate" href="{{ "" | absLangURL }}" accesskey="h" translate="no" lang="en">{{ site.Title }}</a></h1>
         {{- else }}
-        <p class="site-title-heading"><a class="site-title" href="{{ "" | absLangURL }}" accesskey="h">{{ site.Title }}</a></p>
+        <p class="site-title-heading"><a class="site-title notranslate" href="{{ "" | absLangURL }}" accesskey="h" translate="no" lang="en">{{ site.Title }}</a></p>
         {{- end }}
         <p class="site-tagline">{{ site.Params.description }}</p>
       </div>

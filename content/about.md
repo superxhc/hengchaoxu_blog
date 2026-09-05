@@ -6,7 +6,7 @@ hiddenInRss: true
 ---
 
 {{< profile-card image="/images/about/life-photo.jpg" alt="Hengchao Xu standing by the sea" >}}
-## Hengchao (Harlan) Xu
+## {{< name >}}Hengchao (Harlan) Xu{{< /name >}}
 
 *Undergraduate student and researcher*
 
@@ -19,7 +19,7 @@ hiddenInRss: true
 **Contact:** [Email](mailto:superxhc@outlook.com) · [GitHub](https://github.com/superxhc) · [LinkedIn](https://www.linkedin.com/in/hengchao-xu-9035a62a7/)
 {{< /profile-card >}}
 
-I am Hengchao Xu (许恒超), and I also go by Harlan or Superanto. I am currently an undergraduate student at Dongbei University of Finance and Economics, majoring in Big Data Management and Application. I expect to graduate in July 2027.
+I am {{< name >}}Hengchao Xu{{< /name >}} ({{< name lang="zh-Hans" >}}许恒超{{< /name >}}), and I also go by {{< name >}}Harlan or Superanto{{< /name >}}. I am currently an undergraduate student at Dongbei University of Finance and Economics, majoring in Big Data Management and Application. I expect to graduate in July 2027.
 
 I am also an undergraduate researcher at the Key Laboratory of Big Data Management Optimization and Decision of Liaoning Province. My current work focuses mainly on *LLM-based affective computing* and *spatio-temporal forecasting*. I am particularly interested in questions that help explain how models behave, rather than only whether they perform better.
 

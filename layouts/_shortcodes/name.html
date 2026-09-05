@@ -1,0 +1,2 @@
+{{- $lang := .Get "lang" | default "en" -}}
+<span class="notranslate person-name" translate="no" lang="{{ $lang }}">{{- .Inner | plainify -}}</span>{{- "" -}}
