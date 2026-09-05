@@ -1,0 +1,2 @@
+{{- $label := default "Keywords" (.Get "label") -}}
+<div class="scholar-keywords"><span class="scholar-keywords-label">{{ $label }}:</span> <div>{{ .Inner | strings.TrimSpace | .Page.RenderString }}</div></div>

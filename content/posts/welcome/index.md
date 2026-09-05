@@ -1,6 +1,6 @@
 ---
 title: "Welcome"
-date: 2026-09-05T12:00:00+08:00
+date: 2026-09-06T1:12:00+08:00
 draft: false
 homePinned: true
 description: "A brief introduction to this academic blog and what will appear here."
@@ -10,7 +10,11 @@ categories:
   - Notes
 math: false
 ---
+Welcome to my personal website.
 
-Welcome. This site is a place for research notes on large language models, affective computing, human–AI interaction, and related topics.
+I created this site as a place to record ideas, research notes, experiments, and occasional reflections on problems that I find interesting. Most of my current work is related to LLM-based affective computing and spatio-temporal forecasting, although the topics appearing here may gradually extend beyond these areas.
 
-Posts may be written in English, Chinese, or a mixture of both. The site is intentionally simple so that the emphasis remains on the ideas and the writing.
+I hope to keep this website relatively simple. Some posts may document ongoing research, some may contain technical notes or failed experiments, and others may simply record questions that I think are worth thinking about. The content may be written in English, Chinese, or a mixture of both.
+
+As my research interests and experience evolve, I expect this site to evolve with them. For a more formal introduction, please see the [About](/about/) page.
+

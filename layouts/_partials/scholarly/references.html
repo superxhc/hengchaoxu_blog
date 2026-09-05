@@ -1,0 +1,9 @@
+{{- $references := .Params.references | default (slice) -}}
+{{- with .Resources.GetMatch "references.y*ml" -}}
+  {{- $references = . | transform.Unmarshal -}}
+{{- else -}}
+  {{- with .Resources.GetMatch "references.json" -}}
+    {{- $references = . | transform.Unmarshal -}}
+  {{- end -}}
+{{- end -}}
+{{- return $references -}}

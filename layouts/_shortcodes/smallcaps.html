@@ -1,0 +1,3 @@
+{{- $text := .Get "text" -}}
+{{- if not $text }}{{ errorf "The smallcaps shortcode requires text: %s" .Position }}{{ end -}}
+<span class="scholar-smallcaps">{{ $text }}</span>

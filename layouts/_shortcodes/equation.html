@@ -1,0 +1,13 @@
+{{- $label := default "Equation" (.Get "label") -}}
+{{- $numbering := partial "scholarly/numbering.html" (dict "shortcode" . "prefix" "eq") -}}
+<div
+  id="{{ $numbering.id }}"
+  class="scholar-equation{{ if $numbering.numbered }} scholar-numbered{{ end }}"
+  data-scholar-label="{{ $label }}"
+  data-scholar-counter="equation"
+  data-scholar-number="{{ $numbering.number }}"
+  data-scholar-auto="{{ $numbering.automatic }}"
+  aria-label="{{ $label }}">
+  <div class="scholar-equation-body">\[{{ .Inner | strings.TrimSpace | transform.HTMLEscape | safeHTML }}\]</div>
+  {{- if $numbering.numbered }}<span class="scholar-equation-number">(<span class="scholar-number{{ if not $numbering.automatic }} is-explicit{{ end }}" data-scholar-number-slot>{{ $numbering.number }}</span>)</span>{{- end }}
+</div>

@@ -1,0 +1,9 @@
+{{- $shortcode := .shortcode -}}
+{{- $prefix := .prefix -}}
+{{- $rawNumber := printf "%v" ($shortcode.Get "number") -}}
+{{- $numbered := ne (lower $rawNumber) "none" -}}
+{{- $automatic := and $numbered (eq $rawNumber "") -}}
+{{- $requestedID := $shortcode.Get "id" -}}
+{{- $fallbackID := printf "%s-%d" $prefix (add $shortcode.Ordinal 1) -}}
+{{- $id := anchorize (default $fallbackID $requestedID) -}}
+{{- return (dict "id" $id "number" $rawNumber "numbered" $numbered "automatic" $automatic) -}}

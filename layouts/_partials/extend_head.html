@@ -8,7 +8,9 @@
 {{- if .Param "math" }}
 <link rel="stylesheet" href="{{ "vendor/katex/0.18.1/katex.min.css" | relURL }}">
 <script defer src="{{ "vendor/katex/0.18.1/katex.min.js" | relURL }}"></script>
+<script defer src="{{ "vendor/katex/0.18.1/mhchem.min.js" | relURL }}"></script>
 <script defer src="{{ "vendor/katex/0.18.1/auto-render.min.js" | relURL }}"></script>
+<script defer src="{{ "vendor/katex/0.18.1/copy-tex.min.js" | relURL }}"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     if (typeof renderMathInElement !== 'function') return;
@@ -27,6 +29,26 @@
     };
 
     replaceInTextNodes(/\\\$/g, marker);
+    const defaultMacros = {
+      "\\RR": "\\mathbb{R}",
+      "\\CC": "\\mathbb{C}",
+      "\\NN": "\\mathbb{N}",
+      "\\ZZ": "\\mathbb{Z}",
+      "\\QQ": "\\mathbb{Q}",
+      "\\EE": "\\mathbb{E}",
+      "\\PP": "\\mathbb{P}",
+      "\\Var": "\\operatorname{Var}",
+      "\\Cov": "\\operatorname{Cov}",
+      "\\argmin": "\\operatorname*{arg\\,min}",
+      "\\argmax": "\\operatorname*{arg\\,max}",
+      "\\KL": "D_{\\mathrm{KL}}",
+      "\\softmax": "\\operatorname{softmax}",
+      "\\ind": "\\mathbf{1}",
+      "\\abs": "\\left\\lvert #1 \\right\\rvert",
+      "\\norm": "\\left\\lVert #1 \\right\\rVert"
+    };
+    const pageMacros = {{ with .Params.mathMacros }}{{ . | jsonify | safeJS }}{{ else }}{}{{ end }};
+
     renderMathInElement(root, {
       delimiters: [
         { left: '$$', right: '$$', display: true },
@@ -35,10 +57,17 @@
         { left: '\\(', right: '\\)', display: false }
       ],
       ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'option'],
+      macros: Object.assign({}, defaultMacros, pageMacros),
       throwOnError: false,
-      strict: 'warn'
+      strict: 'warn',
+      trust: false
     });
     replaceInTextNodes(new RegExp(marker, 'g'), '$');
   });
 </script>
+{{- end }}
+
+{{- if .Param "scholarly" }}
+{{- $scholarlyJS := resources.Get "js/scholarly.js" | minify | fingerprint }}
+<script defer src="{{ $scholarlyJS.RelPermalink }}" integrity="{{ $scholarlyJS.Data.Integrity }}" crossorigin="anonymous"></script>
 {{- end }}

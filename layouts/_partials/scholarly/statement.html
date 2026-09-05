@@ -1,0 +1,22 @@
+{{- $shortcode := .shortcode -}}
+{{- $inner := .inner -}}
+{{- $kind := .kind -}}
+{{- $class := .class -}}
+{{- $label := default $kind ($shortcode.Get "label") -}}
+{{- $title := $shortcode.Get "title" -}}
+{{- $numbering := partial "scholarly/numbering.html" (dict "shortcode" $shortcode "prefix" $class) -}}
+<section
+  id="{{ $numbering.id }}"
+  class="scholar-block scholar-statement scholar-{{ $class }}{{ if $numbering.numbered }} scholar-numbered{{ end }}"
+  data-scholar-label="{{ $label }}"
+  data-scholar-counter="statement"
+  data-scholar-number="{{ $numbering.number }}"
+  data-scholar-auto="{{ $numbering.automatic }}"
+  aria-labelledby="{{ $numbering.id }}-label">
+  <header id="{{ $numbering.id }}-label" class="scholar-statement-heading">
+    <span class="scholar-label">{{ $label }}</span>{{ if $numbering.numbered }} <span class="scholar-number{{ if not $numbering.automatic }} is-explicit{{ end }}" data-scholar-number-slot>{{ $numbering.number }}</span>{{ end }}{{ with $title }} <span class="scholar-statement-title">({{ . }})</span>{{ end }}.
+  </header>
+  <div class="scholar-statement-body">
+    {{- $inner | strings.TrimSpace | $shortcode.Page.RenderString -}}
+  </div>
+</section>

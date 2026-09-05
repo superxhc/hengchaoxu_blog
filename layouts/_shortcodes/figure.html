@@ -1,0 +1,28 @@
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" -}}
+{{- if not $src }}{{ errorf "The figure shortcode requires src: %s" .Position }}{{ end -}}
+{{- if not (collections.IsSet .Params "alt") }}{{ errorf "The figure shortcode requires alt (use alt=\"\" only for a decorative image): %s" .Position }}{{ end -}}
+{{- $resource := .Page.Resources.GetMatch $src -}}
+{{- $url := $src -}}
+{{- with $resource -}}
+  {{- $url = .RelPermalink -}}
+{{- else -}}
+  {{- if not (or (hasPrefix $src "/") (hasPrefix $src "https://") (hasPrefix $src "http://")) -}}
+    {{- errorf "The figure shortcode could not find page resource %q: %s" $src $.Position -}}
+  {{- end -}}
+{{- end -}}
+{{- $label := default "Figure" (.Get "label") -}}
+{{- $caption := .Get "caption" -}}
+{{- $numbering := partial "scholarly/numbering.html" (dict "shortcode" . "prefix" "fig") -}}
+<figure
+  id="{{ $numbering.id }}"
+  class="scholar-figure{{ if eq (.Get "wide") "true" }} scholar-wide{{ end }}{{ if $numbering.numbered }} scholar-numbered{{ end }}"
+  data-scholar-label="{{ $label }}"
+  data-scholar-counter="figure"
+  data-scholar-number="{{ $numbering.number }}"
+  data-scholar-auto="{{ $numbering.automatic }}">
+  <img src="{{ $url | safeURL }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+  {{- if or $caption $numbering.numbered }}
+  <figcaption><span class="scholar-caption-label">{{ $label }}{{ if $numbering.numbered }} <span class="scholar-number{{ if not $numbering.automatic }} is-explicit{{ end }}" data-scholar-number-slot>{{ $numbering.number }}</span>{{ end }}.</span>{{ with $caption }} <span class="scholar-caption-text">{{ . | $.Page.RenderString (dict "display" "inline") }}</span>{{ end }}</figcaption>
+  {{- end }}
+</figure>

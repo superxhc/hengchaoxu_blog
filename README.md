@@ -152,6 +152,7 @@ hugo --gc --minify --cleanDestinationDir
 
 ## 更多文档
 
+- [完整学术写作手册：公式、定理、编号、图表与参考文献](docs/writing.md)
 - [Cloudflare Pages 部署与域名接入](docs/deployment.md)
 - [GitHub 账号与评论系统配置](docs/comments.md)
 - [Hugo 数学公式文档](https://gohugo.io/content-management/mathematics/)

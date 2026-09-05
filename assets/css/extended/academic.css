@@ -837,6 +837,343 @@ details .title {
   text-align: left;
 }
 
+/* Scholarly writing primitives: theorem environments, numbered objects,
+   citations, and paper front matter. Numbering resets for every article. */
+.post-content {
+  counter-reset: scholar-algorithm scholar-equation scholar-figure scholar-listing scholar-statement scholar-table;
+}
+
+.scholar-numbered[data-scholar-counter="statement"][data-scholar-auto="true"] {
+  counter-increment: scholar-statement;
+}
+
+.scholar-numbered[data-scholar-counter="equation"][data-scholar-auto="true"] {
+  counter-increment: scholar-equation;
+}
+
+.scholar-numbered[data-scholar-counter="figure"][data-scholar-auto="true"] {
+  counter-increment: scholar-figure;
+}
+
+.scholar-numbered[data-scholar-counter="table"][data-scholar-auto="true"] {
+  counter-increment: scholar-table;
+}
+
+.scholar-numbered[data-scholar-counter="listing"][data-scholar-auto="true"] {
+  counter-increment: scholar-listing;
+}
+
+.scholar-numbered[data-scholar-counter="algorithm"][data-scholar-auto="true"] {
+  counter-increment: scholar-algorithm;
+}
+
+.scholar-numbered[data-scholar-counter="statement"][data-scholar-auto="true"] .scholar-number:not(.is-resolved)::before {
+  content: counter(scholar-statement);
+}
+
+.scholar-numbered[data-scholar-counter="equation"][data-scholar-auto="true"] .scholar-number:not(.is-resolved)::before {
+  content: counter(scholar-equation);
+}
+
+.scholar-numbered[data-scholar-counter="figure"][data-scholar-auto="true"] .scholar-number:not(.is-resolved)::before {
+  content: counter(scholar-figure);
+}
+
+.scholar-numbered[data-scholar-counter="table"][data-scholar-auto="true"] .scholar-number:not(.is-resolved)::before {
+  content: counter(scholar-table);
+}
+
+.scholar-numbered[data-scholar-counter="listing"][data-scholar-auto="true"] .scholar-number:not(.is-resolved)::before {
+  content: counter(scholar-listing);
+}
+
+.scholar-numbered[data-scholar-counter="algorithm"][data-scholar-auto="true"] .scholar-number:not(.is-resolved)::before {
+  content: counter(scholar-algorithm);
+}
+
+.scholar-abstract {
+  border-bottom: 1px solid var(--soft-border);
+  border-top: 1px solid var(--soft-border);
+  font-size: 0.93rem;
+  margin: 1.35rem auto 1rem;
+  padding: 0.65rem 1rem 0.7rem;
+}
+
+.md-content .scholar-abstract h2,
+.scholar-abstract h2 {
+  border: 0;
+  font-size: 0.96rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  margin: 0 0 0.25rem;
+  padding: 0;
+  text-align: center;
+}
+
+.scholar-abstract p {
+  margin: 0.35rem 0;
+}
+
+.scholar-keywords {
+  color: var(--content);
+  display: flex;
+  font-size: 0.88rem;
+  gap: 0.35rem;
+  margin: 0.75rem 1rem 1.45rem;
+}
+
+.scholar-keywords-label {
+  flex: 0 0 auto;
+  font-weight: 600;
+}
+
+.scholar-keywords > div,
+.scholar-keywords p {
+  display: inline;
+  margin: 0;
+}
+
+.scholar-block,
+.scholar-proof,
+.scholar-equation,
+.scholar-figure,
+.scholar-table,
+.scholar-listing,
+.scholar-algorithm {
+  scroll-margin-top: 1.2rem;
+}
+
+.scholar-statement {
+  border-bottom: 1px solid var(--soft-border);
+  border-top: 1px solid var(--soft-border);
+  margin: 1.35rem 0;
+  padding: 0.7rem 0.85rem 0.58rem;
+}
+
+.scholar-statement-heading {
+  color: var(--primary);
+  display: inline;
+  font-weight: 600;
+}
+
+.scholar-statement-title {
+  font-weight: 400;
+}
+
+.scholar-statement-body {
+  display: inline;
+}
+
+.scholar-statement-body > p:first-child {
+  display: inline;
+}
+
+.scholar-statement-body > p:last-child {
+  margin-bottom: 0;
+}
+
+.scholar-theorem .scholar-statement-body,
+.scholar-lemma .scholar-statement-body,
+.scholar-proposition .scholar-statement-body,
+.scholar-corollary .scholar-statement-body,
+.scholar-conjecture .scholar-statement-body,
+.scholar-claim .scholar-statement-body {
+  font-style: italic;
+}
+
+.scholar-proof {
+  margin: 1.25rem 0 1.4rem;
+  padding: 0 0.15rem;
+}
+
+.scholar-proof-label {
+  color: var(--primary);
+  font-style: italic;
+  font-weight: 600;
+}
+
+.scholar-proof-body > p:first-of-type {
+  display: inline;
+}
+
+.scholar-proof-body > p:last-child {
+  margin-bottom: 0;
+}
+
+.scholar-qed {
+  color: var(--primary);
+  display: block;
+  font-size: 1.05em;
+  line-height: 1;
+  margin-top: 0.2rem;
+  text-align: right;
+}
+
+.scholar-equation {
+  align-items: center;
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  margin: 1.25rem 0;
+  max-width: 100%;
+}
+
+.scholar-equation-body {
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.scholar-equation-body > p,
+.scholar-equation-body .katex-display {
+  margin: 0;
+}
+
+.scholar-equation-number {
+  color: var(--secondary);
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+.scholar-figure,
+.scholar-table,
+.scholar-listing,
+.scholar-algorithm {
+  margin: 1.55rem auto;
+  max-width: 100%;
+}
+
+.scholar-figure img {
+  display: block;
+  margin: 0 auto;
+  max-height: 72vh;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.scholar-figure.scholar-wide {
+  margin-left: 50%;
+  max-width: none;
+  transform: translateX(-50%);
+  width: min(860px, calc(100vw - 2 * var(--gap)));
+}
+
+.scholar-figure figcaption,
+.scholar-table figcaption,
+.scholar-listing figcaption,
+.scholar-algorithm figcaption {
+  color: var(--secondary);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  margin: 0.45rem auto 0;
+}
+
+.scholar-figure figcaption {
+  text-align: center;
+}
+
+.scholar-caption-label {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.scholar-caption-text,
+.scholar-caption-text p {
+  display: inline;
+  margin: 0;
+}
+
+.scholar-table figcaption,
+.scholar-algorithm figcaption {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0.3rem;
+  padding-bottom: 0.2rem;
+  text-align: left;
+}
+
+.scholar-table-scroll,
+.scholar-listing-body,
+.scholar-algorithm-body {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.scholar-table-scroll table {
+  margin: 0;
+  min-width: 100%;
+}
+
+.scholar-listing-body .highlight,
+.scholar-listing-body pre {
+  margin-bottom: 0;
+}
+
+.scholar-listing figcaption {
+  border-top: 1px solid var(--soft-border);
+  margin-top: 0;
+  padding-top: 0.25rem;
+  text-align: left;
+}
+
+.scholar-algorithm {
+  border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  padding: 0.35rem 0.55rem 0.15rem;
+}
+
+.scholar-algorithm-body ol,
+.scholar-algorithm-body ul {
+  margin-bottom: 0.45rem;
+}
+
+.scholar-citation {
+  white-space: nowrap;
+}
+
+.scholar-citation a,
+.scholar-xref {
+  border-bottom-style: dotted !important;
+}
+
+.scholar-xref.is-broken {
+  color: var(--link-hover);
+  text-decoration: wavy underline;
+}
+
+.scholar-bibliography {
+  margin-top: 2rem;
+}
+
+.scholar-bibliography ol {
+  font-size: 0.88rem;
+  padding-left: 2.2rem;
+}
+
+.scholar-bibliography li {
+  margin: 0.55rem 0;
+  padding-left: 0.25rem;
+}
+
+.scholar-reference-title {
+  color: var(--primary);
+}
+
+.scholar-smallcaps {
+  font-variant-caps: small-caps;
+  letter-spacing: 0.035em;
+}
+
+.scholar-block:target,
+.scholar-equation:target,
+.scholar-figure:target,
+.scholar-table:target,
+.scholar-listing:target,
+.scholar-algorithm:target,
+.scholar-bibliography li:target {
+  outline: 1px solid var(--link);
+  outline-offset: 4px;
+}
+
 /* GitHub-authenticated comments keep the same restrained, text-first style. */
 .blog-comments {
   border-top: 3px double var(--border);
@@ -1138,6 +1475,34 @@ details .title {
     margin-inline: 0;
   }
 
+  .scholar-abstract {
+    padding-inline: 0.7rem;
+  }
+
+  .scholar-keywords {
+    display: block;
+    margin-inline: 0.7rem;
+  }
+
+  .scholar-statement {
+    padding-inline: 0.65rem;
+  }
+
+  .scholar-equation {
+    gap: 0.35rem;
+  }
+
+  .scholar-figure figcaption {
+    text-align: left;
+  }
+
+  .scholar-figure.scholar-wide {
+    margin-left: auto;
+    max-width: 100%;
+    transform: none;
+    width: 100%;
+  }
+
   .md-content ul pre {
     margin-inline-start: 0;
   }
@@ -1180,6 +1545,28 @@ details .title {
     max-width: none;
     padding: 0;
     width: 100%;
+  }
+
+  .scholar-statement,
+  .scholar-proof,
+  .scholar-equation,
+  .scholar-figure,
+  .scholar-table,
+  .scholar-listing,
+  .scholar-algorithm,
+  .scholar-bibliography li {
+    break-inside: avoid;
+  }
+
+  .scholar-figure.scholar-wide {
+    margin-left: auto;
+    transform: none;
+    width: 100%;
+  }
+
+  .scholar-xref,
+  .scholar-citation a {
+    color: inherit;
   }
 }
 

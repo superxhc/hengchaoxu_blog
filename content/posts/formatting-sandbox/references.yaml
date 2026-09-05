@@ -1,0 +1,15 @@
+- id: hugo-shortcodes
+  authors: Hugo Authors
+  title: Shortcodes
+  container: Hugo Documentation
+  year: 2026
+  url: https://gohugo.io/content-management/shortcodes/
+  note: Accessed 6 September 2026.
+
+- id: katex-auto-render
+  authors: KaTeX contributors
+  title: Auto-render Extension
+  container: KaTeX Documentation
+  year: 2026
+  url: https://katex.org/docs/autorender.html
+  note: Accessed 6 September 2026.

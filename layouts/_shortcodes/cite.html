@@ -1,0 +1,16 @@
+{{- $keysValue := .Get "keys" -}}
+{{- if not $keysValue }}{{ errorf "The cite shortcode requires keys: %s" .Position }}{{ end -}}
+{{- $references := partial "scholarly/references.html" .Page -}}
+{{- if not $references }}{{ errorf "The cite shortcode found no references in front matter or references.yaml: %s" .Position }}{{ end -}}
+{{- $keys := split $keysValue "," -}}
+<span class="scholar-citation">[{{- range $keyIndex, $rawKey := $keys -}}
+  {{- $key := $rawKey | strings.TrimSpace -}}
+  {{- $number := 0 -}}
+  {{- range $referenceIndex, $reference := $references -}}
+    {{- if eq (lower (printf "%v" $reference.id)) (lower $key) -}}
+      {{- $number = add $referenceIndex 1 -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if eq $number 0 }}{{ errorf "Unknown citation key %q: %s" $key $.Position }}{{ end -}}
+  {{- if gt $keyIndex 0 }}, {{ end -}}<a href="#ref-{{ $key | anchorize }}" aria-label="Reference {{ $number }}">{{ $number }}</a>
+{{- end -}}{{- with .Get "locator" }}, {{ . }}{{ end -}}]</span>

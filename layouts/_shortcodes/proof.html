@@ -1,0 +1,11 @@
+{{- $label := default "Proof" (.Get "label") -}}
+{{- $title := .Get "title" -}}
+{{- $id := anchorize (default (printf "proof-%d" (add .Ordinal 1)) (.Get "id")) -}}
+{{- $showQED := ne (lower (default "true" (.Get "qed"))) "false" -}}
+<section id="{{ $id }}" class="scholar-proof" aria-labelledby="{{ $id }}-label">
+  <div class="scholar-proof-body">
+    <span id="{{ $id }}-label" class="scholar-proof-label">{{ $label }}{{ with $title }} ({{ . }}){{ end }}.</span>
+    {{- .Inner | strings.TrimSpace | .Page.RenderString -}}
+  </div>
+  {{- if $showQED }}<span class="scholar-qed" aria-label="End of proof">□</span>{{- end }}
+</section>

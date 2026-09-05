@@ -1,0 +1,24 @@
+{{- $references := partial "scholarly/references.html" .Page -}}
+{{- if not $references }}{{ errorf "The bibliography shortcode found no references in front matter or references.yaml: %s" .Position }}{{ end -}}
+{{- $title := default "References" (.Get "title") -}}
+{{- $id := anchorize (default "references" (.Get "id")) -}}
+<section id="{{ $id }}" class="scholar-bibliography" aria-labelledby="{{ $id }}-heading">
+  <h2 id="{{ $id }}-heading">{{ $title }}</h2>
+  <ol>
+    {{- range $index, $reference := $references }}
+      {{- if not $reference.id }}{{ errorf "Bibliography entry %d is missing id: %s" (add $index 1) $.Position }}{{ end -}}
+      {{- if not $reference.title }}{{ errorf "Bibliography entry %q is missing title: %s" $reference.id $.Position }}{{ end -}}
+    <li id="ref-{{ $reference.id | anchorize }}">
+      {{- with $reference.authors }}<span class="scholar-reference-authors">{{ . }}</span>. {{ end -}}
+      <span class="scholar-reference-title">{{ $reference.title }}</span>.
+      {{- with $reference.container }} <em>{{ . }}</em>.{{ end -}}
+      {{- with $reference.publisher }} {{ . }}.{{ end -}}
+      {{- with $reference.volume }} <strong>{{ . }}</strong>{{ with $reference.issue }}({{ . }}){{ end }}{{ with $reference.pages }}, {{ . }}{{ end }}.{{ end -}}
+      {{- with $reference.year }} {{ . }}.{{ end -}}
+      {{- with $reference.doi }} <a href="https://doi.org/{{ . | safeURL }}">doi:{{ . }}</a>.{{ end -}}
+      {{- with $reference.url }} <a href="{{ . | safeURL }}">Link</a>.{{ end -}}
+      {{- with $reference.note }} {{ . }}{{ end -}}
+    </li>
+    {{- end }}
+  </ol>
+</section>

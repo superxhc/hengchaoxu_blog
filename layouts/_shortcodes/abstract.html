@@ -1,0 +1,6 @@
+{{- $label := default "Abstract" (.Get "label") -}}
+{{- $id := anchorize (default "abstract" (.Get "id")) -}}
+<section id="{{ $id }}" class="scholar-abstract" aria-labelledby="{{ $id }}-label">
+  <h2 id="{{ $id }}-label">{{ $label }}</h2>
+  <div>{{ .Inner | strings.TrimSpace | .Page.RenderString }}</div>
+</section>

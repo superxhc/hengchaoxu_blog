@@ -1,0 +1,13 @@
+{{- $label := default "Listing" (.Get "label") -}}
+{{- $caption := .Get "caption" -}}
+{{- $numbering := partial "scholarly/numbering.html" (dict "shortcode" . "prefix" "lst") -}}
+<figure
+  id="{{ $numbering.id }}"
+  class="scholar-listing{{ if $numbering.numbered }} scholar-numbered{{ end }}"
+  data-scholar-label="{{ $label }}"
+  data-scholar-counter="listing"
+  data-scholar-number="{{ $numbering.number }}"
+  data-scholar-auto="{{ $numbering.automatic }}">
+  <div class="scholar-listing-body">{{ .Inner | strings.TrimSpace | .Page.RenderString }}</div>
+  <figcaption><span class="scholar-caption-label">{{ $label }}{{ if $numbering.numbered }} <span class="scholar-number{{ if not $numbering.automatic }} is-explicit{{ end }}" data-scholar-number-slot>{{ $numbering.number }}</span>{{ end }}.</span>{{ with $caption }} <span class="scholar-caption-text">{{ . | $.Page.RenderString (dict "display" "inline") }}</span>{{ end }}</figcaption>
+</figure>

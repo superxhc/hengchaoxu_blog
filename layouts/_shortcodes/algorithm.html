@@ -1,0 +1,13 @@
+{{- $label := default "Algorithm" (.Get "label") -}}
+{{- $caption := .Get "caption" -}}
+{{- $numbering := partial "scholarly/numbering.html" (dict "shortcode" . "prefix" "alg") -}}
+<figure
+  id="{{ $numbering.id }}"
+  class="scholar-algorithm{{ if $numbering.numbered }} scholar-numbered{{ end }}"
+  data-scholar-label="{{ $label }}"
+  data-scholar-counter="algorithm"
+  data-scholar-number="{{ $numbering.number }}"
+  data-scholar-auto="{{ $numbering.automatic }}">
+  <figcaption><span class="scholar-caption-label">{{ $label }}{{ if $numbering.numbered }} <span class="scholar-number{{ if not $numbering.automatic }} is-explicit{{ end }}" data-scholar-number-slot>{{ $numbering.number }}</span>{{ end }}.</span>{{ with $caption }} <span class="scholar-caption-text">{{ . | $.Page.RenderString (dict "display" "inline") }}</span>{{ end }}</figcaption>
+  <div class="scholar-algorithm-body">{{ .Inner | strings.TrimSpace | .Page.RenderString }}</div>
+</figure>

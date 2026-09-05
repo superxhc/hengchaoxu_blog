@@ -1,0 +1,4 @@
+{{- $short := .Get "short" -}}
+{{- $long := .Get "long" -}}
+{{- if not (and $short $long) }}{{ errorf "The abbr shortcode requires short and long: %s" .Position }}{{ end -}}
+<abbr title="{{ $long }}">{{ $short }}</abbr>

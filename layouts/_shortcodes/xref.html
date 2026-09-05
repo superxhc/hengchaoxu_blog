@@ -1,0 +1,5 @@
+{{- $id := .Get "id" -}}
+{{- if not $id }}{{ errorf "The xref shortcode requires id: %s" .Position }}{{ end -}}
+{{- $label := default "reference" (.Get "label") -}}
+{{- $text := .Get "text" -}}
+<a href="#{{ $id | anchorize }}" class="scholar-xref" data-scholar-xref="{{ $id | anchorize }}" data-scholar-xref-auto="{{ not $text }}">{{ default $label $text }}</a>
