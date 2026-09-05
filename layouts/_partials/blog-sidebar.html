@@ -1,0 +1,51 @@
+{{- $posts := where site.RegularPages "Section" "posts" -}}
+{{- $posts = where $posts "Params.hiddenInHomeList" "ne" true -}}
+{{- $recent := first 5 ((where $posts "Params.homePinned" "ne" true).ByDate.Reverse) -}}
+<aside class="home-sidebar blog-sidebar" aria-label="Blog index">
+  <section class="sidebar-section">
+    <h2>Browse</h2>
+    <ul class="sidebar-links">
+      <li><a href="{{ "search/" | relURL }}">Search</a></li>
+      <li><a href="{{ "archives/" | relURL }}">Archives</a></li>
+      <li><a href="{{ "categories/" | relURL }}">Categories</a></li>
+      <li><a href="{{ "tags/" | relURL }}">Tags</a></li>
+    </ul>
+  </section>
+
+  <section class="sidebar-section">
+    <h2>Categories</h2>
+    {{- with site.Taxonomies.categories.ByCount }}
+    <ul class="sidebar-links sidebar-counts">
+      {{- range . }}
+      <li><a href="{{ .Page.RelPermalink }}"><span>{{ .Page.LinkTitle }}</span><span aria-label="{{ .Count }} posts">{{ .Count }}</span></a></li>
+      {{- end }}
+    </ul>
+    {{- else }}
+    <p class="sidebar-empty">Categories will appear here automatically.</p>
+    {{- end }}
+  </section>
+
+  <section class="sidebar-section">
+    <h2>Recent notes</h2>
+    {{- with $recent }}
+    <ol class="sidebar-recent">
+      {{- range . }}
+      <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+      {{- end }}
+    </ol>
+    {{- else }}
+    <p class="sidebar-empty">New notes will appear here automatically.</p>
+    {{- end }}
+  </section>
+
+  <section class="sidebar-section">
+    <h2>Elsewhere</h2>
+    <ul class="sidebar-links">
+      <li><a href="https://github.com/superxhc" rel="me noopener">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/hengchao-xu-9035a62a7/" rel="me noopener">LinkedIn</a></li>
+      {{- with site.Home.OutputFormats.Get "RSS" }}
+      <li><a href="{{ .RelPermalink }}" type="application/rss+xml">RSS feed</a></li>
+      {{- end }}
+    </ul>
+  </section>
+</aside>

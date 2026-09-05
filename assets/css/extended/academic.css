@@ -281,7 +281,7 @@ summary:focus-visible {
 
 .entry-content {
   color: var(--content);
-  font-size: 0.96rem;
+  font-size: 1rem;
   line-height: 1.58;
   margin: 9px 0 0;
 }
@@ -361,6 +361,7 @@ summary:focus-visible {
 
 .post-content {
   color: var(--content);
+  font-size: 1rem;
   margin: 22px 0 28px;
 }
 
@@ -532,7 +533,8 @@ details .title {
 }
 
 /* Homepage: compact informational sidebar and immediate article stream. */
-.home-shell {
+.home-shell,
+.blog-shell {
   display: grid;
   gap: var(--column-gap);
   grid-template-areas: "sidebar feed";
@@ -548,7 +550,8 @@ details .title {
   padding-top: 2px;
 }
 
-.home-feed {
+.home-feed,
+.blog-main {
   grid-area: feed;
   min-width: 0;
 }
@@ -641,7 +644,7 @@ details .title {
 
 .home-post p {
   color: var(--content);
-  font-size: 0.97rem;
+  font-size: 1rem;
   line-height: 1.58;
   margin: 9px 0 0;
 }
@@ -1432,13 +1435,15 @@ details .title {
     --sidebar-width: 190px;
   }
 
-  .home-shell {
+  .home-shell,
+  .blog-shell {
     display: flex;
     flex-direction: column;
     gap: 34px;
   }
 
-  .home-feed {
+  .home-feed,
+  .blog-main {
     order: 1;
   }
 
