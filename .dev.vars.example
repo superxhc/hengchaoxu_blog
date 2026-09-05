@@ -1,0 +1,10 @@
+# Copy this file to .dev.vars for local Pages Functions development.
+# Never commit .dev.vars or real secrets.
+GITHUB_CLIENT_ID="replace-with-a-local-oauth-app-client-id"
+GITHUB_CLIENT_SECRET="replace-with-a-local-oauth-app-client-secret"
+GITHUB_CALLBACK_URL="http://127.0.0.1:8788/api/auth/callback"
+ADMIN_GITHUB_ID="150793176"
+
+# Optional. Configure both values together when enabling Turnstile.
+# TURNSTILE_SECRET_KEY="replace-with-turnstile-secret"
+# TURNSTILE_HOSTNAME="127.0.0.1"

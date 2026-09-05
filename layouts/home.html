@@ -4,22 +4,12 @@
 {{- $paginator := .Paginate $posts }}
 
 <div class="home-shell">
-  <section class="home-feed" aria-labelledby="latest-notes">
-    <header class="home-intro">
-      <h1>{{ site.Title }}</h1>
-      <p>{{ site.Params.description }}</p>
-    </header>
-
-    <div class="home-section-heading">
-      <h2 id="latest-notes">Latest notes</h2>
-      <a href="{{ "posts/" | relURL }}">View all</a>
-    </div>
-
+  <section class="home-feed" aria-label="Research notes">
     <div class="home-posts">
       {{- range $paginator.Pages }}
       <article class="home-post">
         <header>
-          <h3><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h3>
+          <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
           {{- if .Draft }}<span class="draft-label">Draft</span>{{- end }}
         </header>
         <div class="home-post-meta">

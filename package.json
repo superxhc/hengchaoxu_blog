@@ -1,0 +1,8 @@
+{
+  "name": "hengchaoxu-blog-functions",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/comments-api.test.mjs"
+  }
+}

@@ -68,3 +68,9 @@ Target: <your-pages-project>.pages.dev
 - 域名切换前已记录现有 DNS，明确根域名迁移或仅 `www` 接入的方案。
 
 连接完成后，每次向 `main` 推送 Markdown 和图片，Cloudflare Pages 就会自动重新构建并更新站点。
+
+## 5. 账号与评论功能
+
+仓库现在包含 Pages Functions 与 D1 评论功能。它不会改变 Hugo 的构建命令，但正式启用前还必须手动创建 GitHub OAuth App、D1 数据库、`BLOG_DB` binding 和加密环境变量。完整步骤见 [GitHub 账号与评论系统配置](comments.md)。
+
+`static/_routes.json` 将 Function 调用限制在 `/api/*`；文章、图片、CSS、JavaScript、RSS 和其他静态页面不经过 Function。不要把 GitHub Client Secret 或 `.dev.vars` 提交到仓库。

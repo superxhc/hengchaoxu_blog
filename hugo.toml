@@ -1,7 +1,7 @@
 baseURL = 'https://hengchaoxu.online/'
 defaultContentLanguage = 'en'
 locale = 'en-US'
-title = 'Hengchao Xu'
+title = 'Hengchao Harlan Xu · 许恒超'
 theme = 'PaperMod'
 timeZone = 'Asia/Hong_Kong'
 hasCJKLanguage = true
@@ -36,7 +36,7 @@ term = ['HTML', 'RSS']
   lineNos = false
 
 [params]
-description = 'Research notes on LLMs, affective computing, human–AI interaction, and related topics.'
+description = 'Affective Computing, Spatio-Temporal Forecasting and related topics'
 author = 'Hengchao Xu'
 mainSections = ['posts']
 defaultTheme = 'light'
@@ -50,10 +50,12 @@ ShowPostNavLinks = true
 ShowBreadCrumbs = false
 ShowCodeCopyButtons = true
 ShowFullTextinRSS = true
-ShowRssButtonInSectionTermList = true
+ShowRssButtonInSectionTermList = false
 ShowToc = true
 TocOpen = false
 hideAuthor = true
+comments = true
+commentsTurnstileSiteKey = ''
 DateFormat = '2 January 2006'
 
   [params.fuseOpts]

@@ -5,6 +5,15 @@
 
 # Local preview and test artifacts
 /.tmp/
+/node_modules/
+/.wrangler/
+/.dev.vars
+/.dev.vars.*
+/.env
+/.env.*
+
+# Keep documented examples even though their names share ignored prefixes.
+!/.dev.vars.example
 
 # Operating-system and editor metadata
 .DS_Store

@@ -153,5 +153,6 @@ hugo --gc --minify --cleanDestinationDir
 ## 更多文档
 
 - [Cloudflare Pages 部署与域名接入](docs/deployment.md)
+- [GitHub 账号与评论系统配置](docs/comments.md)
 - [Hugo 数学公式文档](https://gohugo.io/content-management/mathematics/)
 - [PaperMod 官方文档](https://github.com/adityatelange/hugo-PaperMod/wiki)

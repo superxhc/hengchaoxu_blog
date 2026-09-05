@@ -1,0 +1,36 @@
+{{- if eq .Section "posts" }}
+{{- $commentsJS := resources.Get "js/comments.js" | minify | fingerprint }}
+<section
+  id="comments"
+  class="blog-comments"
+  data-comments-root
+  data-page-path="{{ .RelPermalink }}"
+  data-api-base="{{ "api" | relURL }}"
+  data-turnstile-site-key="{{ site.Params.commentsTurnstileSiteKey | default "" }}"
+  aria-labelledby="comments-title">
+  <header class="comments-header">
+    <h2 id="comments-title">Comments</h2>
+    <p>Sign in with GitHub to join the discussion.</p>
+  </header>
+
+  <p class="comments-status" data-comments-status role="status" aria-live="polite">Loading comments&hellip;</p>
+  <div class="comments-account" data-comments-account></div>
+  <ol class="comments-list" data-comments-list></ol>
+
+  <form class="comment-form" data-comments-form hidden>
+    <label for="comment-content">Add a comment</label>
+    <textarea id="comment-content" name="content" rows="5" maxlength="4000" required></textarea>
+    <div class="comment-form-meta">
+      <span data-comment-count>0 / 4000</span>
+      <span>Plain text only</span>
+    </div>
+    <div class="comment-turnstile" data-comment-turnstile hidden></div>
+    <button type="submit">Post comment</button>
+  </form>
+
+  <noscript>
+    <p>Viewing the article does not require JavaScript, but signing in and commenting do.</p>
+  </noscript>
+</section>
+<script defer src="{{ $commentsJS.RelPermalink }}" integrity="{{ $commentsJS.Data.Integrity }}" crossorigin="anonymous"></script>
+{{- end }}
