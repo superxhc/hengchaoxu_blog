@@ -606,6 +606,11 @@ details .title {
   padding: 13px 0 5px;
 }
 
+.home-post--pinned {
+  margin-bottom: 24px;
+  padding-top: 2px;
+}
+
 .home-post header {
   align-items: baseline;
   border-bottom: 1px solid var(--soft-border);
@@ -649,18 +654,52 @@ details .title {
   font-style: italic;
 }
 
+.pinned-label {
+  color: var(--secondary);
+  font-size: 0.72rem;
+  font-style: italic;
+}
+
+.home-latest {
+  margin-top: 8px;
+}
+
+.home-section-title {
+  border-bottom: 1px solid var(--border);
+  color: var(--primary);
+  font-size: 1.08rem;
+  font-weight: 400;
+  line-height: 1.35;
+  margin: 0;
+  padding-bottom: 3px;
+}
+
+.home-latest-posts .home-post:first-child {
+  padding-top: 12px;
+}
+
 .empty-state {
   border-bottom: 1px solid var(--soft-border);
   color: var(--secondary);
   padding: 18px 0;
 }
 
-.home-pagination {
-  align-items: center;
-  display: flex;
+.home-more {
+  border-top: 1px solid var(--soft-border);
   font-size: 0.78rem;
-  justify-content: space-between;
-  margin-top: 18px;
+  margin-top: 9px;
+  padding-top: 7px;
+  text-align: right;
+}
+
+.home-more a {
+  color: var(--link);
+}
+
+.home-more a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
 }
 
 /* Archives, search, and taxonomies retain their behavior but lose UI-card styling. */

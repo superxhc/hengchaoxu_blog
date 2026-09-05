@@ -2,6 +2,7 @@
 title: "Welcome"
 date: 2026-09-05T12:00:00+08:00
 draft: false
+homePinned: true
 description: "A brief introduction to this academic blog and what will appear here."
 tags:
   - site-notes

@@ -1,44 +1,33 @@
 {{- define "main" }}
 {{- $posts := where site.RegularPages "Section" "posts" }}
 {{- $posts = where $posts "Params.hiddenInHomeList" "ne" true }}
-{{- $paginator := .Paginate $posts }}
+{{- $posts = $posts.ByDate.Reverse }}
+{{- $pinned := first 1 (where $posts "Params.homePinned" true) }}
+{{- $latest := first 3 (where $posts "Params.homePinned" "ne" true) }}
+{{- $recent := first 5 (where $posts "Params.homePinned" "ne" true) }}
 
 <div class="home-shell">
   <section class="home-feed" aria-label="Research notes">
-    <div class="home-posts">
-      {{- range $paginator.Pages }}
-      <article class="home-post">
-        <header>
-          <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-          {{- if .Draft }}<span class="draft-label">Draft</span>{{- end }}
-        </header>
-        <div class="home-post-meta">
-          {{- if not .Date.IsZero }}
-          <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date | time.Format (default "2 January 2006" site.Params.DateFormat) }}</time>
-          {{- end }}
-          {{- with .GetTerms "categories" }}
-          <span aria-hidden="true">·</span>
-          <span class="home-post-categories">
-            {{- range $index, $category := . }}{{ if $index }}, {{ end }}<a href="{{ $category.RelPermalink }}">{{ $category.LinkTitle }}</a>{{ end -}}
-          </span>
-          {{- end }}
-        </div>
-        {{- if ne (.Param "hideSummary") true }}
-        <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}…{{ end }}</p>
-        {{- end }}
-      </article>
-      {{- else }}
-      <p class="empty-state">No notes have been published yet.</p>
-      {{- end }}
-    </div>
-
-    {{- if gt $paginator.TotalPages 1 }}
-    <nav class="home-pagination" aria-label="Notes pagination">
-      {{- with $paginator.Prev }}<a rel="prev" href="{{ .URL }}">Newer notes</a>{{ end }}
-      <span>Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
-      {{- with $paginator.Next }}<a rel="next" href="{{ .URL }}">Older notes</a>{{ end }}
-    </nav>
+    {{- range $pinned }}
+      {{- partial "home-post.html" (dict "page" . "pinned" true) }}
     {{- end }}
+
+    <section class="home-latest" aria-labelledby="latest-notes-title">
+      <h2 id="latest-notes-title" class="home-section-title">Latest notes</h2>
+      <div class="home-latest-posts">
+      {{- range $latest }}
+        {{- partial "home-post.html" (dict "page" .) }}
+      {{- else }}
+        <p class="empty-state">No other notes have been published yet.</p>
+      {{- end }}
+      </div>
+    </section>
+
+    <nav class="home-more" aria-label="More research notes">
+      {{- with site.GetPage "section" "posts" }}
+      <a href="{{ .RelPermalink }}">More notes&nbsp;&raquo;</a>
+      {{- end }}
+    </nav>
   </section>
 
   <aside class="home-sidebar" aria-label="Blog index">
@@ -67,7 +56,7 @@
 
     <section class="sidebar-section">
       <h2>Recent notes</h2>
-      {{- with first 5 $posts }}
+      {{- with $recent }}
       <ol class="sidebar-recent">
         {{- range . }}
         <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>

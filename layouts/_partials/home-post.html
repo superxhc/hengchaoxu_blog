@@ -1,0 +1,23 @@
+{{- $page := .page -}}
+{{- $pinned := .pinned | default false -}}
+<article class="home-post{{ if $pinned }} home-post--pinned{{ end }}">
+  <header>
+    <h2><a href="{{ $page.RelPermalink }}">{{ $page.LinkTitle }}</a></h2>
+    {{- if $pinned }}<span class="pinned-label">Pinned</span>{{- end }}
+    {{- if $page.Draft }}<span class="draft-label">Draft</span>{{- end }}
+  </header>
+  <div class="home-post-meta">
+    {{- if not $page.Date.IsZero }}
+    <time datetime="{{ $page.Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ $page.Date | time.Format (default "2 January 2006" site.Params.DateFormat) }}</time>
+    {{- end }}
+    {{- with $page.GetTerms "categories" }}
+    <span aria-hidden="true">·</span>
+    <span class="home-post-categories">
+      {{- range $index, $category := . }}{{ if $index }}, {{ end }}<a href="{{ $category.RelPermalink }}">{{ $category.LinkTitle }}</a>{{ end -}}
+    </span>
+    {{- end }}
+  </div>
+  {{- if ne ($page.Param "hideSummary") true }}
+  <p>{{ $page.Summary | plainify | htmlUnescape }}{{ if $page.Truncated }}…{{ end }}</p>
+  {{- end }}
+</article>
