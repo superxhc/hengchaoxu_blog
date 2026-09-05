@@ -1,4 +1,49 @@
 baseURL = 'https://hengchaoxu.online/'
-languageCode = 'en-us'
+locale = 'en-US'
 title = 'Hengchao Xu'
 theme = 'PaperMod'
+
+[pagination]
+pagerSize = 10
+
+[params]
+description = 'Research notes on LLMs, affective computing, human-AI interaction, and related topics.'
+author = 'Hengchao Xu'
+defaultTheme = 'light'
+disableThemeToggle = true
+
+ShowReadingTime = false
+ShowShareButtons = false
+ShowPostNavLinks = true
+ShowBreadCrumbs = false
+ShowCodeCopyButtons = true
+ShowFullTextinRSS = true
+
+[params.homeInfoParams]
+Title = 'Hengchao Xu'
+Content = 'Research notes on LLMs, affective computing, human-AI interaction, and related topics.'
+
+[[menu.main]]
+name = 'Research'
+url = '/research/'
+weight = 10
+
+[[menu.main]]
+name = 'Publications'
+url = '/publications/'
+weight = 20
+
+[[menu.main]]
+name = 'Notes'
+url = '/posts/'
+weight = 30
+
+[[menu.main]]
+name = 'Archives'
+url = '/archives/'
+weight = 40
+
+[[menu.main]]
+name = 'About'
+url = '/about/'
+weight = 50
