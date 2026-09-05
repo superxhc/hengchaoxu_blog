@@ -69,10 +69,10 @@ DateFormat = '2 January 2006'
   keys = ['title', 'permalink', 'summary', 'content']
 
   [params.assets]
-  favicon = 'favicon-32x32.png?v=hc1'
-  favicon16x16 = 'favicon-16x16.png?v=hc1'
-  favicon32x32 = 'favicon-32x32.png?v=hc1'
-  apple_touch_icon = 'apple-touch-icon.png?v=hc1'
+  favicon = 'favicon-32x32.png?v=hc2'
+  favicon16x16 = 'favicon-16x16.png?v=hc2'
+  favicon32x32 = 'favicon-32x32.png?v=hc2'
+  apple_touch_icon = 'apple-touch-icon.png?v=hc2'
   safari_pinned_tab = 'favicon.svg'
   theme_color = '#fbfaf7'
   msapplication_TileColor = '#fbfaf7'
