@@ -1,0 +1,8 @@
+{{- define "main" }}
+<section class="not-found-page">
+  <p class="not-found-code">404</p>
+  <h1>Page not found</h1>
+  <p>The address may be incorrect, or the page may have moved.</p>
+  <p><a href="{{ "" | relURL }}">Return home</a> or <a href="{{ "search/" | relURL }}">search the site</a>.</p>
+</section>
+{{- end }}

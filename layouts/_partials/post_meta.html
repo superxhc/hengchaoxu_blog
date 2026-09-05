@@ -1,0 +1,16 @@
+{{- $items := slice -}}
+{{- if not .Date.IsZero -}}
+  {{- $date := printf "<time datetime=%q>%s</time>" (.Date.Format "2006-01-02T15:04:05Z07:00") (.Date | time.Format (default "2 January 2006" site.Params.DateFormat)) -}}
+  {{- $items = $items | append $date -}}
+{{- end -}}
+{{- with .GetTerms "categories" -}}
+  {{- $links := slice -}}
+  {{- range . -}}
+    {{- $links = $links | append (printf "<a href=%q>%s</a>" .RelPermalink .LinkTitle) -}}
+  {{- end -}}
+  {{- $items = $items | append (printf "<span class=%q>%s</span>" "meta-categories" (delimit $links ", ")) -}}
+{{- end -}}
+{{- if (.Param "ShowReadingTime") -}}
+  {{- $items = $items | append (printf "<span>%s</span>" (i18n "read_time" .ReadingTime | default (printf "%d min" .ReadingTime))) -}}
+{{- end -}}
+{{- delimit $items "<span class=\"meta-separator\" aria-hidden=\"true\">·</span>" | safeHTML -}}

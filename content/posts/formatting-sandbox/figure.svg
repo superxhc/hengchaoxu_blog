@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="360" viewBox="0 0 720 360" role="img" aria-labelledby="title desc">
+  <title id="title">Layout-test line figure</title>
+  <desc id="desc">A blue line rises across three observations labelled A, B, and C.</desc>
+  <rect width="720" height="360" fill="#fbfaf7"/>
+  <g stroke="#c9ceca" stroke-width="2">
+    <path d="M90 55V290H650" fill="none"/>
+    <path d="M90 230H650M90 170H650M90 110H650" opacity=".55"/>
+  </g>
+  <path d="M150 245L355 188L575 92" fill="none" stroke="#16747a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#16747a">
+    <circle cx="150" cy="245" r="7"/><circle cx="355" cy="188" r="7"/><circle cx="575" cy="92" r="7"/>
+  </g>
+  <g fill="#37413f" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">
+    <text x="150" y="322">A</text><text x="355" y="322">B</text><text x="575" y="322">C</text>
+  </g>
+</svg>

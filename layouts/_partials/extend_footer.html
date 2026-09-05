@@ -1,0 +1,8 @@
+<nav class="secondary-nav" aria-label="Secondary navigation">
+  <a href="{{ "search/" | relURL }}">Search</a>
+  <a href="{{ "categories/" | relURL }}">Categories</a>
+  <a href="{{ "tags/" | relURL }}">Tags</a>
+  {{- with site.Home.OutputFormats.Get "RSS" }}
+  <a href="{{ .RelPermalink }}" type="application/rss+xml">RSS</a>
+  {{- end }}
+</nav>

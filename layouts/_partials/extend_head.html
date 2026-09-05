@@ -1,0 +1,37 @@
+{{- if .Param "math" }}
+<link rel="stylesheet" href="{{ "vendor/katex/0.18.1/katex.min.css" | relURL }}">
+<script defer src="{{ "vendor/katex/0.18.1/katex.min.js" | relURL }}"></script>
+<script defer src="{{ "vendor/katex/0.18.1/auto-render.min.js" | relURL }}"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof renderMathInElement !== 'function') return;
+    const root = document.querySelector('.post-content') || document.body;
+    const marker = '\uE000';
+    const ignored = 'script, noscript, style, textarea, pre, code, option';
+    const replaceInTextNodes = function (pattern, replacement) {
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      const nodes = [];
+      while (walker.nextNode()) {
+        if (!walker.currentNode.parentElement.closest(ignored)) nodes.push(walker.currentNode);
+      }
+      nodes.forEach(function (node) {
+        node.nodeValue = node.nodeValue.replace(pattern, replacement);
+      });
+    };
+
+    replaceInTextNodes(/\\\$/g, marker);
+    renderMathInElement(root, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false },
+        { left: '\\[', right: '\\]', display: true },
+        { left: '\\(', right: '\\)', display: false }
+      ],
+      ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'option'],
+      throwOnError: false,
+      strict: 'warn'
+    });
+    replaceInTextNodes(new RegExp(marker, 'g'), '$');
+  });
+</script>
+{{- end }}

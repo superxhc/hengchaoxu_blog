@@ -1,0 +1,102 @@
+{{- define "main" }}
+{{- $posts := where site.RegularPages "Section" "posts" }}
+{{- $posts = where $posts "Params.hiddenInHomeList" "ne" true }}
+{{- $paginator := .Paginate $posts }}
+
+<div class="home-shell">
+  <section class="home-feed" aria-labelledby="latest-notes">
+    <header class="home-intro">
+      <h1>{{ site.Title }}</h1>
+      <p>{{ site.Params.description }}</p>
+    </header>
+
+    <div class="home-section-heading">
+      <h2 id="latest-notes">Latest notes</h2>
+      <a href="{{ "posts/" | relURL }}">View all</a>
+    </div>
+
+    <div class="home-posts">
+      {{- range $paginator.Pages }}
+      <article class="home-post">
+        <header>
+          <h3><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h3>
+          {{- if .Draft }}<span class="draft-label">Draft</span>{{- end }}
+        </header>
+        <div class="home-post-meta">
+          {{- if not .Date.IsZero }}
+          <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date | time.Format (default "2 January 2006" site.Params.DateFormat) }}</time>
+          {{- end }}
+          {{- with .GetTerms "categories" }}
+          <span aria-hidden="true">·</span>
+          <span class="home-post-categories">
+            {{- range $index, $category := . }}{{ if $index }}, {{ end }}<a href="{{ $category.RelPermalink }}">{{ $category.LinkTitle }}</a>{{ end -}}
+          </span>
+          {{- end }}
+        </div>
+        {{- if ne (.Param "hideSummary") true }}
+        <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}…{{ end }}</p>
+        {{- end }}
+      </article>
+      {{- else }}
+      <p class="empty-state">No notes have been published yet.</p>
+      {{- end }}
+    </div>
+
+    {{- if gt $paginator.TotalPages 1 }}
+    <nav class="home-pagination" aria-label="Notes pagination">
+      {{- with $paginator.Prev }}<a rel="prev" href="{{ .URL }}">Newer notes</a>{{ end }}
+      <span>Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+      {{- with $paginator.Next }}<a rel="next" href="{{ .URL }}">Older notes</a>{{ end }}
+    </nav>
+    {{- end }}
+  </section>
+
+  <aside class="home-sidebar" aria-label="Blog index">
+    <section class="sidebar-section">
+      <h2>Browse</h2>
+      <ul class="sidebar-links">
+        <li><a href="{{ "search/" | relURL }}">Search</a></li>
+        <li><a href="{{ "archives/" | relURL }}">Archives</a></li>
+        <li><a href="{{ "categories/" | relURL }}">Categories</a></li>
+        <li><a href="{{ "tags/" | relURL }}">Tags</a></li>
+      </ul>
+    </section>
+
+    <section class="sidebar-section">
+      <h2>Categories</h2>
+      {{- with site.Taxonomies.categories.ByCount }}
+      <ul class="sidebar-links sidebar-counts">
+        {{- range . }}
+        <li><a href="{{ .Page.RelPermalink }}"><span>{{ .Page.LinkTitle }}</span><span aria-label="{{ .Count }} posts">{{ .Count }}</span></a></li>
+        {{- end }}
+      </ul>
+      {{- else }}
+      <p class="sidebar-empty">Categories will appear here automatically.</p>
+      {{- end }}
+    </section>
+
+    <section class="sidebar-section">
+      <h2>Recent notes</h2>
+      {{- with first 5 $posts }}
+      <ol class="sidebar-recent">
+        {{- range . }}
+        <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+        {{- end }}
+      </ol>
+      {{- else }}
+      <p class="sidebar-empty">New notes will appear here automatically.</p>
+      {{- end }}
+    </section>
+
+    <section class="sidebar-section">
+      <h2>Elsewhere</h2>
+      <ul class="sidebar-links">
+        <li><a href="https://github.com/superxhc" rel="me noopener">GitHub</a></li>
+        {{- with site.Home.OutputFormats.Get "RSS" }}
+        <li><a href="{{ .RelPermalink }}" type="application/rss+xml">RSS feed</a></li>
+        {{- end }}
+      </ul>
+    </section>
+  </aside>
+</div>
+{{- end }}

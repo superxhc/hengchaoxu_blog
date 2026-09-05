@@ -1,16 +1,48 @@
 baseURL = 'https://hengchaoxu.online/'
+defaultContentLanguage = 'en'
 locale = 'en-US'
 title = 'Hengchao Xu'
 theme = 'PaperMod'
+timeZone = 'Asia/Hong_Kong'
+hasCJKLanguage = true
+enableRobotsTXT = true
+summaryLength = 36
 
 [pagination]
 pagerSize = 10
 
+[taxonomies]
+category = 'categories'
+tag = 'tags'
+
+[outputs]
+home = ['HTML', 'RSS', 'JSON']
+section = ['HTML', 'RSS']
+taxonomy = ['HTML', 'RSS']
+term = ['HTML', 'RSS']
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+      enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+        block = [['\[', '\]'], ['$$', '$$']]
+        inline = [['\(', '\)'], ['$', '$']]
+  [markup.highlight]
+  noClasses = false
+  codeFences = true
+  guessSyntax = false
+  lineNos = false
+
 [params]
-description = 'Research notes on LLMs, affective computing, human-AI interaction, and related topics.'
+description = 'Research notes on LLMs, affective computing, human–AI interaction, and related topics.'
 author = 'Hengchao Xu'
+mainSections = ['posts']
 defaultTheme = 'light'
-disableThemeToggle = true
+disableThemeToggle = false
+disableSpecial1stPost = true
+math = false
 
 ShowReadingTime = false
 ShowShareButtons = false
@@ -18,10 +50,35 @@ ShowPostNavLinks = true
 ShowBreadCrumbs = false
 ShowCodeCopyButtons = true
 ShowFullTextinRSS = true
+ShowRssButtonInSectionTermList = true
+ShowToc = true
+TocOpen = false
+hideAuthor = true
+DateFormat = '2 January 2006'
 
-[params.homeInfoParams]
-Title = 'Hengchao Xu'
-Content = 'Research notes on LLMs, affective computing, human-AI interaction, and related topics.'
+  [params.fuseOpts]
+  isCaseSensitive = false
+  shouldSort = true
+  location = 0
+  distance = 1000
+  threshold = 0.35
+  minMatchCharLength = 1
+  ignoreLocation = true
+  keys = ['title', 'permalink', 'summary', 'content']
+
+  [params.assets]
+  favicon = 'favicon.svg'
+  favicon16x16 = 'favicon-16x16.png'
+  favicon32x32 = 'favicon-32x32.png'
+  apple_touch_icon = 'apple-touch-icon.png'
+  safari_pinned_tab = 'favicon.svg'
+  theme_color = '#fbfaf7'
+  msapplication_TileColor = '#fbfaf7'
+
+[[menu.main]]
+name = 'Home'
+url = '/'
+weight = 5
 
 [[menu.main]]
 name = 'Research'
