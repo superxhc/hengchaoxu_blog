@@ -1,6 +1,6 @@
 ---
 title: "Welcome To My Personal Website"
-date: 2026-09-06T1:12:00+08:00
+date: 2026-09-06T01:12:00+08:00
 draft: false
 homePinned: true
 description: "A brief introduction to this academic blog and what will appear here."
