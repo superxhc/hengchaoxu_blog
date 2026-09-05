@@ -1,7 +1,7 @@
 baseURL = 'https://hengchaoxu.online/'
 defaultContentLanguage = 'en'
 locale = 'en-US'
-title = 'Hengchao Harlan Xu · 许恒超'
+title = 'Hengchao Harlan Xu'
 theme = 'PaperMod'
 timeZone = 'Asia/Hong_Kong'
 hasCJKLanguage = true

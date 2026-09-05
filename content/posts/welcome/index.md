@@ -4,6 +4,7 @@ date: 2026-09-06T01:12:00+08:00
 draft: false
 homePinned: true
 description: "A brief introduction to this academic blog and what will appear here."
+summary: "Welcome to my personal website. I use this space to record ideas, research notes, experiments, and reflections on problems that I find interesting. My current work is mainly related to LLM-based affective computing and spatio-temporal forecasting. Some posts will document ongoing research, while others may contain technical notes, failed experiments, or questions worth thinking about. Content may be written in English, Chinese, or a mixture of both."
 tags:
   - site-notes
 categories:
@@ -17,4 +18,3 @@ I created this site as a place to record ideas, research notes, experiments, and
 I hope to keep this website relatively simple. Some posts may document ongoing research, some may contain technical notes or failed experiments, and others may simply record questions that I think are worth thinking about. The content may be written in English, Chinese, or a mixture of both.
 
 As my research interests and experience evolve, I expect this site to evolve with them. For a more formal introduction, please see the [About](/about/) page.
-

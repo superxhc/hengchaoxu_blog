@@ -1,0 +1,10 @@
+{{- $image := .Get "image" -}}
+{{- $alt := .Get "alt" | default "Profile photograph" -}}
+<section class="about-profile" aria-label="Profile summary">
+  <div class="about-profile__photo">
+    <img src="{{ $image | relURL }}" alt="{{ $alt }}" width="1440" height="1080" loading="eager" fetchpriority="high" decoding="async">
+  </div>
+  <div class="about-profile__body">
+    {{- .Page.RenderString (dict "display" "block") .Inner -}}
+  </div>
+</section>

@@ -479,6 +479,11 @@ details .title {
   margin-top: 1rem;
 }
 
+.post-tags:empty {
+  display: none;
+  margin: 0;
+}
+
 .post-tags::before {
   color: var(--secondary);
   content: "Tags: ";
@@ -700,6 +705,59 @@ details .title {
   color: var(--link-hover);
   text-decoration: underline;
   text-underline-offset: 0.16em;
+}
+
+/* Compact academic profile at the beginning of the About page. */
+.about-profile {
+  background: var(--entry);
+  border: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  margin: 0 0 2rem;
+  overflow: hidden;
+}
+
+.about-profile__photo {
+  border-right: 1px solid var(--border);
+  min-height: 290px;
+  overflow: hidden;
+}
+
+.about-profile__photo img {
+  border-radius: 0;
+  display: block;
+  height: 100%;
+  margin: 0;
+  max-width: none;
+  object-fit: cover;
+  object-position: 53% 56%;
+  width: 100%;
+}
+
+.about-profile__body {
+  align-self: center;
+  min-width: 0;
+  padding: 17px 20px 18px;
+}
+
+.post-content .about-profile__body h2 {
+  border-bottom: 1px solid var(--soft-border);
+  font-size: 1.48rem;
+  font-weight: 400;
+  line-height: 1.25;
+  margin: 0 0 0.5rem;
+  padding: 0 0 0.25rem;
+}
+
+.post-content .about-profile__body p {
+  font-size: 0.91rem;
+  line-height: 1.48;
+  margin: 0.48rem 0 0;
+}
+
+.about-profile__body strong {
+  color: var(--primary);
+  font-weight: 600;
 }
 
 /* Archives, search, and taxonomies retain their behavior but lose UI-card styling. */
@@ -1465,6 +1523,21 @@ details .title {
   .home-post {
     margin-bottom: 15px;
     padding-top: 15px;
+  }
+
+  .about-profile {
+    grid-template-columns: 1fr;
+  }
+
+  .about-profile__photo {
+    aspect-ratio: 16 / 10;
+    border-bottom: 1px solid var(--border);
+    border-right: 0;
+    min-height: 0;
+  }
+
+  .about-profile__body {
+    padding: 15px 16px 17px;
   }
 
   .md-content h2 {
